@@ -31,7 +31,7 @@ class ConversationMainView extends StatelessWidget {
           height: MediaQuery.of(context).size.height -
               AppBar().preferredSize.height -
               heightOfContainer -
-              20,
+              15,
           child: BlocProvider(
             create: (context) => MessageReceiverBloc(
               messageRepository: MessageRepository(

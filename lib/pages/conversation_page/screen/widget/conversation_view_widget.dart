@@ -17,10 +17,12 @@ class ConversationView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(receiver.name),
+        centerTitle: true,
         actions: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(receiver.avatar),
-          )
+          IconButton(onPressed: () {}, icon: const Icon(Icons.phone)),
+          // CircleAvatar(
+          //   backgroundImage: NetworkImage(receiver.avatar),
+          // )
         ],
       ),
       body: Center(
@@ -33,6 +35,7 @@ class ConversationView extends StatelessWidget {
                 conversationId: state.conversation.id ?? '',
               );
             } else if (state is ConversationCreationSuccess) {
+              print('thuynga.dt: state is ConversationCreationSuccess');
               return ConversationMainView(
                 loginAppUser: loginAppUser,
                 receiver: receiver,

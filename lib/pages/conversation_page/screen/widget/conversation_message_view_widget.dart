@@ -20,18 +20,21 @@ class ConversationMessageView extends StatelessWidget {
     return Center(
       child: BlocBuilder<MessageReceiverBloc, MessageReceiverState>(
         builder: (context, state) {
-          if (state is MessageLoadInprogress) {
-            return const CircularProgressIndicator();
-          } else if (state is MessageLoadFailure) {
+          // if (state is MessageLoadInprogress) {
+          //   return const CircularProgressIndicator();
+          // } else
+          if (state is MessageLoadFailure) {
             return Text('Unable to fetch Message ${state.message}');
           } else if (state is MessageLoadSuccess) {
-            return MessageListView(
-              messages: state.messages,
-              loginUID: loginAppUser.uid,
-            );
+            if (state.messages != null) {
+              return MessageListView(
+                messages: state.messages,
+                loginUID: loginAppUser.uid,
+              );
+            }
           }
-          return Text(
-            'Undefined state ${state.runtimeType.toString()}',
+          return const Text(
+            'Say Hi! No messages yet.',
           );
         },
       ),

@@ -23,9 +23,22 @@ class _PeopleScreenState extends State<PeopleScreen> {
         appBar: AppBar(
           title: const Text('People'),
           centerTitle: true,
-          // leading: CircleAvatar(
-          //   backgroundImage: NetworkImage(''),
-          // ),
+          leading: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: Container(
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                widget.loginUser.name.substring(0, 1).toUpperCase(),
+                style: const TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
           actions: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.post_add)),
           ],
@@ -84,7 +97,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 }
               } else {
                 // trang thai PeopleInitial
-                return const CircularProgressIndicator();
+                return const Text('undefined');
               }
             },
           ),

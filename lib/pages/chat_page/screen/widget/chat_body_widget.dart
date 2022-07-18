@@ -11,25 +11,48 @@ class ChatBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      // leading: CircleAvatar(
-      //   backgroundImage: NetworkImage(receiver.avatar),
-      // ),
-      title: Text(receiver.name),
-      subtitle: Text(receiver.email),
-      trailing: IconButton(
-        icon: const Icon(Icons.arrow_forward_ios_rounded),
-        onPressed: () {
-          Navigator.push<MaterialPageRoute>(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ConversationScreen(
-                receiver: receiver,
-                sender: sender,
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push<MaterialPageRoute>(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ConversationScreen(
+              receiver: receiver,
+              sender: sender,
             ),
-          );
-        },
+          ),
+        );
+      },
+      child: ListTile(
+        leading: FittedBox(
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+          child: Container(
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue,
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Text(receiver.name.substring(0, 1).toUpperCase()),
+          ),
+        ),
+        title: Text(receiver.name),
+        subtitle: Text(receiver.email),
+        trailing: IconButton(
+          icon: const Icon(Icons.arrow_forward_ios_rounded),
+          onPressed: () {
+            Navigator.push<MaterialPageRoute>(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ConversationScreen(
+                  receiver: receiver,
+                  sender: sender,
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

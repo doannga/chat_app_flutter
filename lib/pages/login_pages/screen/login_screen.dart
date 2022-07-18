@@ -32,6 +32,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Log in'),
+        centerTitle: true,
+        leading: const BackButton(),
+      ),
       backgroundColor: Colors.white,
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) async {
@@ -44,7 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
               AppUser? user =
                   await AuthRepository().getUserDetail(uid: userAuth?.uid);
               if (user != null) {
-                Navigator.pushAndRemoveUntil<dynamic>(
+                //Navigator.pushAndRemoveUntil<dynamic>
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BlocProvider<HomeBloc>(
@@ -74,8 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            }
-            if (state is UnAuthenticated) {
+            } else if (state is UnAuthenticated) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
@@ -156,8 +161,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               );
             } else {
-              return const Text('Undefined state');
+              return Container();
             }
+            // } else {
+            //   return const Dialog(
+            //       child:
+            //           Text('Incorrect email or password. Please try again.'));
+            // }
           },
         ),
       ),

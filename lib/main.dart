@@ -1,43 +1,39 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:message_app_flutter/data/provider/conversation_firebase_provider.dart';
 import 'package:message_app_flutter/data/repositories/auth_repository.dart';
-import 'package:message_app_flutter/data/repositories/conversation_repository.dart';
-import 'package:message_app_flutter/pages/conversation_page/conversation.dart';
 import 'package:message_app_flutter/pages/landing_screen_pages/landing_screen.dart';
 import 'package:message_app_flutter/pages/login_pages/auth_bloc/auth_bloc.dart';
 import 'package:message_app_flutter/pages/login_pages/screen/login_screen.dart';
-import 'package:message_app_flutter/pages/people_page/bloc/people_bloc.dart';
 import 'package:message_app_flutter/pages/sign_up_pages/sign_up_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MultiBlocProvider(
-    providers: [
-      // BlocProvider<HomeBloc>(
-      //   create: (context) => HomeBloc(), //?
-      // ), // Vì HomeBloc cần tham số là user để khởi tạo, nên mình sẽ ko khởi tạo ở main
-      BlocProvider<PeopleBloc>(
-        create: (context) => PeopleBloc(
-          AuthRepository(),
-        ),
-      ),
-      BlocProvider<ConversationBloc>(
-        create: (context) => ConversationBloc(
-          conversationRepository: ConversationRepository(
-            conversationFirebaseProvider: ConversationFirebaseProvider(
-              firestore: FirebaseFirestore.instance,
-            ),
-          ),
-        ),
-      ),
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    //   MultiBlocProvider(
+    // providers: [
+    //   // BlocProvider<HomeBloc>(
+    //   //   create: (context) => HomeBloc(), //?
+    //   // ), // Vì HomeBloc cần tham số là user để khởi tạo, nên mình sẽ ko khởi tạo ở main
+    //   BlocProvider<PeopleBloc>(
+    //     create: (context) => PeopleBloc(
+    //       AuthRepository(),
+    //     ),
+    //   ),
+    //   BlocProvider<ConversationBloc>(
+    //     create: (context) => ConversationBloc(
+    //       conversationRepository: ConversationRepository(
+    //         conversationFirebaseProvider: ConversationFirebaseProvider(
+    //           firestore: FirebaseFirestore.instance,
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // ],
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {

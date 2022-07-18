@@ -38,6 +38,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Sign up'),
+        centerTitle: true,
+        leading: BackButton(),
+      ),
       backgroundColor: Colors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) async {
@@ -82,17 +87,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
           }
           if (state is UnAuthenticated) {
             return Padding(
-              padding: const EdgeInsets.only(top: 100, bottom: 50),
+              padding: const EdgeInsets.only(bottom: 50),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(
-                    height: 200,
-                    width: 200,
+                    height: 100,
                     child: Icon(Icons.message),
                   ),
-                  const Spacer(),
                   TextField(
                     controller: nameController,
                     keyboardType: TextInputType.name,

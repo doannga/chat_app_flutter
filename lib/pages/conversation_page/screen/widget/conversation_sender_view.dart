@@ -40,6 +40,7 @@ class _ConversationSenderViewState extends State<ConversationSenderView> {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        IconButton(onPressed: () {}, icon: const Icon(Icons.camera_alt)),
         Expanded(
           flex: 9,
           child: TextField(

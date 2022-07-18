@@ -15,12 +15,12 @@ class MessageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return messages.isEmpty
-        ? Text('There is no message.')
+        ? const Text('Say Hi! No messages yet.')
         : ListView.builder(
             itemCount: messages.length,
             reverse: true,
             itemBuilder: (BuildContext context, int index) {
-              final message = messages.elementAt(index);
+              final message = messages[index];
               return MessageBody(
                 isMe: message?.senderUID == loginUID,
                 message: message,

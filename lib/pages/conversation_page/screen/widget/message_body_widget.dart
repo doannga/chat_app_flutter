@@ -17,8 +17,8 @@ class MessageBody extends StatelessWidget {
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.all(5),
-        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: isMe ? Colors.blueGrey : Colors.green,
           borderRadius: BorderRadius.circular(10),
